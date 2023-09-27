@@ -1,14 +1,20 @@
-#/bin/bash
-instance_list="i-0535e970e36cf58bf"
+#!/bin/bash
 
-us_region_name='us-east-1'
+# Update the package list to ensure you have the latest information
+sudo yum update -y
 
-#Start instances
-for instance in $instance_list;
-do
-echo $instance
-echo "stoping the instance: "$instance""
+# Install Nginx using yum
+sudo yum install nginx -y
 
-   aws ec2 stop-instances --instance-ids $instance --region $us_region_name
+# Start the Nginx service
+sudo systemctl start nginx
 
-done
+# Enable Nginx to start on boot
+sudo systemctl enable nginx
+
+# Open port 80 in the firewall to allow HTTP traffic
+sudo firewall-cmd --zone=public --add-service=http --permanent
+sudo firewall-cmd --reload
+
+# Check the status of Nginx to ensure it's running
+sudo systemctl status nginx

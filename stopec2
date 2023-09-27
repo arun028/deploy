@@ -8,13 +8,3 @@ sudo yum install nginx -y
 
 # Start the Nginx service
 sudo systemctl start nginx
-
-# Enable Nginx to start on boot
-sudo systemctl enable nginx
-
-# Open port 80 in the firewall to allow HTTP traffic
-sudo firewall-cmd --zone=public --add-service=http --permanent
-sudo firewall-cmd --reload
-
-# Check the status of Nginx to ensure it's running
-sudo systemctl status nginx

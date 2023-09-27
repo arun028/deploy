@@ -1,0 +1,14 @@
+#/bin/bash
+instance_list="i-0535e970e36cf58bf"
+
+us_region_name='us-east-1'
+
+#Start instances
+for instance in $instance_list;
+do
+echo $instance
+echo "stoping the instance: "$instance""
+
+   aws ec2 stop-instances --instance-ids $instance --region $us_region_name
+
+done
